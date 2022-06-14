@@ -1,46 +1,57 @@
 <?php namespace Controllers;
 
-	//llamamos a la clase "seccion" que se encuentra en Models
-	use Models\Seccion as Seccion;
+	//El controllador hace uso del modelo con su mismo nombre.
+	use Models\Usuarios as Usuario;
 	
-	class seccionesController{
+	class usuariosController{
 
-		private $secciones;
+		private $usuarios;
 
 		public function __construct(){
-			$this->secciones = new Seccion();
+			$this->usuarios = new Usuario();
 		}
 
 		public function index(){
-			$datos = $this->secciones->listar();
+			$datos = $this->usuarios->mostrar();
 			return $datos;
 		}
 
 		public function agregar(){
 			if($_POST){
-				$this->secciones->set("nombre", $_POST['nombre']);
-				$this->secciones->add();
-				header('Location: '. URL . "secciones");
+				$this->usuarios->set("nombre", $_POST['nombre']);
+				$this->usuarios->set("apellido", $_POST['apellido']);
+				$this->usuarios->set("dni", $_POST['dni']);
+				$this->usuarios->set("usuario", $_POST['usuario']);
+				$this->usuarios->set("pass", $_POST['pass']);
+				$this->usuarios->agregar();
+
+				header('Location: '. URL . "usuarios");
 			}
 		}
 
 		public function editar($id){
 			if($_POST){
-				$this->secciones->set("id", $_POST['id']);
-				$this->secciones->set("nombre", $_POST['nombre']);
-				$this->secciones->edit();
-				header('Location: '. URL . "secciones");
+				$this->usuarios->set("id", $_POST['id']);
+				$this->usuarios->set("nombre", $_POST['nombre']);
+				$this->usuarios->set("apellido", $_POST['apellido']);
+				$this->usuarios->set("dni", $_POST['dni']);
+				$this->usuarios->set("usuario", $_POST['usuario']);
+				$this->usuarios->set("pass", $_POST['pass']);
+				$this->usuarios->editar();
+
+				header('Location: '. URL . "usuarios");
 			}else{
-				$this->secciones->set("id", $id);
-				$datos = $this->secciones->view();
+				$this->usuarios->set("id", $id);
+                
+				$datos = $this->usuarios->ver();
 				return $datos;
 			}
 		}
 
 		public function eliminar($id){
-			$this->secciones->set("id", $id);
-			$this->secciones->delete();
-			header('Location: '. URL . "secciones");
+			$this->usuarios->set("id", $id);
+			$this->usuarios->borrar();
+			header('Location: '. URL . "usuarios");
 		}
 	}
 ?>
