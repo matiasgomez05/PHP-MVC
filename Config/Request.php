@@ -13,7 +13,7 @@
 				$ruta = array_filter($ruta);
 				
 				if($ruta[0] == "index.php"){
-					$this->controlador = "usuario";
+					$this->controlador = "Usuarios";
 				} else {
 					$this->controlador = strtolower(array_shift($ruta));
 				}
@@ -25,7 +25,7 @@
 				}
 				$this->argumento = $ruta;
 			} else {
-				$this->controlador = "usuario";
+				$this->controlador = "Usuarios";
 				$this->metodo = "index";
 			}
 		}

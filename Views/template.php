@@ -10,7 +10,7 @@ class Template{
 	<html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Administración de estudiantes</title>
+		<title>Administración</title>
 		<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/bootstrap.css">
 		<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/general.css">
 	</head>
@@ -24,30 +24,13 @@ class Template{
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">Administración de Estudiantes</a>
+		      <a class="navbar-brand" href="<?= URL ?>">Administración</a>
 		    </div>
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 		      <ul class="nav navbar-nav">
-		        <li><a href="<?php echo URL; ?>">Inicio</a></li>
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estudiantes <span class="caret"></span></a>
-		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="<?php echo URL; ?>estudiantes">Listado</a></li>
-		            <li><a href="<?php echo URL; ?>estudiantes/agregar">Agregar</a></li>
-		          </ul>
-		        </li>
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Secciones <span class="caret"></span></a>
-		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="<?php echo URL; ?>secciones">Listado</a></li>
-		            <li><a href="<?php echo URL; ?>secciones/agregar">Agregar</a></li>
-		          </ul>
-		        </li>
+		        <!-- <li><a href="<?php echo URL; ?>"> Clientes </a></li> -->
 		      </ul>
-		      
-		      <ul class="nav navbar-nav navbar-right">
-		       </div>
 		  </div>
 		</nav>
 
@@ -60,7 +43,7 @@ public function __destruct(){
 ?>
 
 	<footer class="navbar-fixed-bottom">
-		Produccion Web
+		Produccion Web - Matias Gomez
 	</footer>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="<?php echo URL; ?>Views/template/js/bootstrap.js"></script>

@@ -1,16 +1,15 @@
 <?php namespace Models;
 
-class Usuarios {
+class Clientes {
 
     //Variables
     private $conexion;
-    
+
     private $id;
     private $nombre;
     private $apellido;
     private $dni;
-    private $user;
-    private $pass;
+    private $fk_ejecutivo;
 
     //Conexion
     public function __construct(){
@@ -28,9 +27,10 @@ class Usuarios {
 
     //CRUD Usuarios
     public function mostrar(){
-        $sql = "SELECT * 
-                FROM usuarios 
-                ORDER BY id ASC";
+        $sql = "SELECT clientes.*, usuarios.nombre, usuarios.apellido 
+                FROM clientes
+                INNER JOIN usuarios ON (clientes.fk_ejecutivo = usuarios.id) 
+                ORDER BY clientes.id DESC";
 
         $datos = $this->conexion->consultaRetorno($sql);
         return $datos;
@@ -40,30 +40,31 @@ class Usuarios {
         $password = $this->pass;
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO usuarios(id, nombre, apellido, dni, usuario, pass, fecha_creacion)
-                VALUES ('', '{$this->nombre}', '{$this->apellido}', '{$this->dni}', '{$this->usuario}', '{$password_hash}', NOW())";
+        $sql = "INSERT INTO clientes(id, nombre, apellido, dni, fk_ejecutivo, fecha_creacion)
+                VALUES ('', '{$this->nombre}', '{$this->apellido}', '{$this->dni}', '{$this->fkEjecutivo}', NOW())";
 
         $this->conexion->consultaSimple($sql);
     }
 
     public function borrar(){
-        $sql = "DELETE FROM usuarios 
+        $sql = "DELETE FROM clientes 
                 WHERE id = '{$this->id}'";
 
         $this->conexion->consultaSimple($sql);
     }
 
     public function editar(){
-        $sql = "UPDATE usuarios 
-                SET nombre = '{$this->nombre}', apellido = '{$this->apellido}', dni = '{$this->dni}', usuario = '{$this->usuario}', pass = '{$this->pass}', ultima_modificacion = NOW()
+        $sql = "UPDATE clientes 
+                SET nombre = '{$this->nombre}', apellido = '{$this->apellido}', dni = '{$this->dni}', fk_ejecutivo = '{$this->fkEjecutivo}, 'ultima_modificacion = NOW() 
                 WHERE id = '{$this->id}'";
 
         $this->conexion->consultaSimple($sql);
     }
 
     public function ver(){
-        $sql = "SELECT *
-                FROM usuarios 
+        $sql = "SELECT clientes.*, usuarios.nombre, usuarios.apellido 
+                FROM clientes
+                INNER JOIN usuarios ON (clientes.fk_ejecutivo = usuarios.id) 
                 WHERE id = '{$this->id}'";
 
         $datos = $this->conexion->consultaRetorno($sql);

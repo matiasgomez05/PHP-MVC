@@ -3,7 +3,7 @@
 	//El controllador hace uso del modelo con su mismo nombre.
 	use Models\Usuarios as Usuario;
 	
-	class usuariosController{
+	class UsuariosController{
 
 		private $usuarios;
 
@@ -42,7 +42,7 @@
 				header('Location: '. URL . "usuarios");
 			}else{
 				$this->usuarios->set("id", $id);
-                
+
 				$datos = $this->usuarios->ver();
 				return $datos;
 			}

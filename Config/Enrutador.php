@@ -14,7 +14,6 @@
 			
 			$argumento = $request->getArgumento();
 			
-			
 			if(is_readable($ruta)){
 				require_once $ruta;
 				$mostrar = "Controllers\\" . $controlador;
