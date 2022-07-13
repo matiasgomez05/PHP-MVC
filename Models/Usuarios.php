@@ -40,8 +40,8 @@ class Usuarios {
         $password = $this->pass;
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO usuarios(id, nombre, apellido, dni, usuario, pass, fecha_creacion)
-                VALUES ('', '{$this->nombre}', '{$this->apellido}', '{$this->dni}', '{$this->usuario}', '{$password_hash}', NOW())";
+        $sql = "INSERT INTO usuarios(id, nombre, apellido, dni, usuario, pass, fecha_creacion, ultima_modificacion)
+                VALUES ('', '{$this->nombre}', '{$this->apellido}', '{$this->dni}', '{$this->usuario}', '{$password_hash}', NOW(), NOW())";
 
         $this->conexion->consultaSimple($sql);
     }
@@ -54,8 +54,11 @@ class Usuarios {
     }
 
     public function editar(){
+        $password = $this->pass;
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
         $sql = "UPDATE usuarios 
-                SET nombre = '{$this->nombre}', apellido = '{$this->apellido}', dni = '{$this->dni}', usuario = '{$this->usuario}', pass = '{$this->pass}', ultima_modificacion = NOW()
+                SET nombre = '{$this->nombre}', apellido = '{$this->apellido}', dni = '{$this->dni}', usuario = '{$this->usuario}', pass = '{$password_hash}', ultima_modificacion = NOW()
                 WHERE id = '{$this->id}'";
 
         $this->conexion->consultaSimple($sql);

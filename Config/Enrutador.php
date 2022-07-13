@@ -29,7 +29,7 @@
 			if(is_readable($ruta)){
 				require_once $ruta;
 			}else{
-				print "No se encontro la vista";
+				print "<h3>No se encontro la vista</h3><hr>";
 			}
 		}
 
